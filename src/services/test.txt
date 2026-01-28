@@ -1,0 +1,22 @@
+1. Services — ОБЯЗАТЕЛЬНО
+
+Тип: integration / db-level
+
+Тестировать:
+
+Prisma-запросы
+
+бизнес-логику
+
+транзакции
+
+edge-cases
+
+Пример:
+
+describe('UserService.create', () => {
+  it('creates user in db', async () => {
+    const user = await UserService.create({ email: 'a@a.com' })
+    expect(user.id).toBeDefined()
+  })
+})

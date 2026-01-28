@@ -1,0 +1,13 @@
+2. Controllers — обязательно
+
+Тип: unit
+
+Тестировать:
+
+HTTP-коды
+
+body / params / query
+
+ошибки
+
+Prisma мокается, сервис — мок.
