@@ -1,5 +1,5 @@
 describe('smoke', () => {
-  it('app load', () => {
-    expect(true).toBe(true)
-  })
+    it('app load', () => {
+        expect(true).toBe(true)
+    })
 })
