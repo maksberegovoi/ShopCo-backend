@@ -10,6 +10,8 @@ export default [
         files: ['**/*.ts'],
         rules: {
             // 'no-console': 'warn',
+            '@typescript-eslint/explicit-function-return-type': 'off',
+            '@typescript-eslint/no-explicit-any': 'error',
             '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }]
         }
     },

@@ -1,5 +1,6 @@
 import { Gender, Role } from '@prisma/client'
 import { hashSync } from 'bcrypt'
+import { Color, ColorName } from './seed.types'
 
 export const users = [
     {
@@ -496,9 +497,6 @@ export const colors = [
     { colorName: 'light-blue', colorHex: '#ADD8E6' },
     { colorName: 'olive', colorHex: '#808000' }
 ] as const
-
-type Color = (typeof colors)[number]
-export type ColorName = (typeof colors)[number]['colorName']
 
 export const colorMap: Record<ColorName, Color> = Object.fromEntries(
     colors.map((c) => [c.colorName, c])

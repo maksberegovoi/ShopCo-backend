@@ -6,7 +6,6 @@ import {
     brands,
     categories,
     colorMap,
-    ColorName,
     defaultProductAttributes,
     products,
     reviews,
@@ -16,6 +15,7 @@ import {
     users
 } from './constants'
 import { Prisma } from '@prisma/client'
+import { ColorName } from './seed.types'
 
 function createProductVariantSeed(
     productId: number,
