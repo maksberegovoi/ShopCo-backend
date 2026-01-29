@@ -9,7 +9,7 @@ export default [
     {
         files: ['**/*.ts'],
         rules: {
-            'no-console': 'warn',
+            // 'no-console': 'warn',
             '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }]
         }
     },

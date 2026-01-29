@@ -18,16 +18,10 @@ enum Gender {
     UNISEX
 }
 
-enum ProductSize {
-    M
-    S
-    L
-    XL
-    XXL
-}
-
 model User {
+    // TODO: promocode
     id       Int    @id @default(autoincrement())
+    name     String
     email    String @unique
     password String
     role     Role   @default(USER)
@@ -132,33 +126,24 @@ model CartItem {
 }
 
 model ProductVariant {
-    id       Int @id @default(autoincrement())
-    quantity Int
+    id        Int    @id @default(autoincrement())
+    stock     Int
+    colorName String
+    colorHex  String
 
     product   Product @relation(fields: [productId], references: [id])
     productId Int
     size      Size    @relation(fields: [sizeId], references: [id])
     sizeId    Int
-    color     Color   @relation(fields: [colorId], references: [id])
-    colorId   Int
 
-    cartItem CartItem[]
+    cartItems CartItem[]
 
-    @@unique([productId, colorId, sizeId])
-}
-
-model Color {
-    id              Int              @id @default(autoincrement())
-    name            String
-    productVariants ProductVariant[]
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    @@unique([productId, sizeId, colorHex])
 }
 
 model Size {
     id              Int              @id @default(autoincrement())
-    name            ProductSize
+    name            String           @unique
     productVariants ProductVariant[]
 }
 
