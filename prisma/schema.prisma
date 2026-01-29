@@ -1,13 +1,228 @@
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+enum Role {
+    USER
+    ADMIN
+}
+
+enum Gender {
+    MALE
+    FEMALE
+    UNISEX
+}
+
+enum ProductSize {
+    M
+    S
+    L
+    XL
+    XXL
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
-  email String @unique
+    id       Int    @id @default(autoincrement())
+    email    String @unique
+    password String
+    role     Role   @default(USER)
+
+    reviews Review[]
+    cart    Cart?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Product {
+    id          Int    @id @default(autoincrement())
+    name        String
+    basePrice   Int
+    discount    Int    @default(0)
+    description String
+    gender      Gender
+
+    style   Style @relation(fields: [styleId], references: [id])
+    styleId Int
+    brand   Brand @relation(fields: [brandId], references: [id])
+    brandId Int
+    type    Type  @relation(fields: [typeId], references: [id])
+    typeId  Int
+
+    attributeValues ProductAttributeValue[]
+    categories      ProductCategory[]
+    variants        ProductVariant[]
+    reviews         Review[]
+    images          ProductImage[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model ProductImage {
+    id     Int     @id @default(autoincrement())
+    url    String
+    isMain Boolean @default(false)
+
+    product   Product @relation(fields: [productId], references: [id])
+    productId Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Style {
+    id      Int       @id @default(autoincrement())
+    name    String
+    product Product[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Brand {
+    id      Int       @id @default(autoincrement())
+    name    String
+    product Product[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Type {
+    id      Int       @id @default(autoincrement())
+    name    String
+    product Product[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Cart {
+    id Int @id @default(autoincrement())
+
+    user   User @relation(fields: [userId], references: [id])
+    userId Int  @unique
+
+    cartItems CartItem[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model CartItem {
+    id       Int @id @default(autoincrement())
+    quantity Int
+
+    cart   Cart @relation(fields: [cartId], references: [id])
+    cartId Int
+
+    productVariant   ProductVariant @relation(fields: [productVariantId], references: [id])
+    productVariantId Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@unique([cartId, productVariantId])
+}
+
+model ProductVariant {
+    id       Int @id @default(autoincrement())
+    quantity Int
+
+    product   Product @relation(fields: [productId], references: [id])
+    productId Int
+    size      Size    @relation(fields: [sizeId], references: [id])
+    sizeId    Int
+    color     Color   @relation(fields: [colorId], references: [id])
+    colorId   Int
+
+    cartItem CartItem[]
+
+    @@unique([productId, colorId, sizeId])
+}
+
+model Color {
+    id              Int              @id @default(autoincrement())
+    name            String
+    productVariants ProductVariant[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Size {
+    id              Int              @id @default(autoincrement())
+    name            ProductSize
+    productVariants ProductVariant[]
+}
+
+model Category {
+    id                Int               @id @default(autoincrement())
+    name              String
+    productCategories ProductCategory[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model ProductCategory {
+    category   Category @relation(fields: [categoryId], references: [id])
+    categoryId Int
+    product    Product  @relation(fields: [productId], references: [id])
+    productId  Int
+
+    @@id([productId, categoryId])
+}
+
+model Attribute {
+    id     Int                     @id @default(autoincrement())
+    name   String
+    values ProductAttributeValue[]
+
+    attributeGroup   AttributeGroup @relation(fields: [attributeGroupId], references: [id])
+    attributeGroupId Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model AttributeGroup {
+    id   Int    @id @default(autoincrement())
+    name String
+
+    attributes Attribute[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model ProductAttributeValue {
+    value String
+
+    product     Product   @relation(fields: [productId], references: [id])
+    productId   Int
+    attribute   Attribute @relation(fields: [attributeId], references: [id])
+    attributeId Int
+
+    @@id([productId, attributeId])
+}
+
+model Review {
+    id     Int    @id @default(autoincrement())
+    rating Int    @default(0)
+    text   String
+
+    user      User    @relation(fields: [userId], references: [id])
+    userId    Int
+    product   Product @relation(fields: [productId], references: [id])
+    productId Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }

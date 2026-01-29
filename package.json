@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "dev": "tsx watch src/app.ts",
+        "migrate": "prisma migrate dev",
 
         "test": "jest",
         "test:watch": "jest --watch",
@@ -13,7 +14,7 @@
 
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        
+
         "prepare": "husky"
     },
     "lint-staged": {
