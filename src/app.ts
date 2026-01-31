@@ -1,8 +1,9 @@
 import 'dotenv/config'
+import 'express-async-errors'
 import cors from 'cors'
 import express from 'express'
 import router from './router'
-import errorHandlerMiddleware from './middlewares/errorHandlerMiddleware'
+import errorHandlerMiddleware from './shared/http/middlewares/errorHandlerMiddleware'
 
 const app = express()
 

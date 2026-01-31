@@ -170,8 +170,8 @@ model Attribute {
     name   String
     values ProductAttributeValue[]
 
-    attributeGroup   AttributeGroup @relation(fields: [attributeGroupId], references: [id])
-    attributeGroupId Int
+    attributeGroup AttributeGroup @relation(fields: [groupId], references: [id])
+    groupId        Int
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt

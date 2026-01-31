@@ -411,70 +411,70 @@ export const attributeGroups = [
 export const attributes = [
     {
         name: 'gender',
-        attributeGroupId: 1
+        groupId: 1
     },
     {
         name: 'season',
-        attributeGroupId: 1
+        groupId: 1
     },
     {
         name: 'collection',
-        attributeGroupId: 1
+        groupId: 1
     },
     {
         name: 'type',
-        attributeGroupId: 1
+        groupId: 1
     },
 
     {
         name: 'material',
-        attributeGroupId: 2
+        groupId: 2
     },
     {
         name: 'fabric weight',
-        attributeGroupId: 2
+        groupId: 2
     },
     {
         name: 'texture',
-        attributeGroupId: 2
+        groupId: 2
     },
     {
         name: 'stretch',
-        attributeGroupId: 2
+        groupId: 2
     },
 
     {
         name: 'fit type',
-        attributeGroupId: 3
+        groupId: 3
     },
     {
         name: 'length',
-        attributeGroupId: 3
+        groupId: 3
     },
     {
         name: 'sleeve type',
-        attributeGroupId: 3
+        groupId: 3
     },
     {
         name: 'neckline',
-        attributeGroupId: 3
+        groupId: 3
     },
 
     {
         name: 'washing',
-        attributeGroupId: 4
+        groupId: 4
     },
     {
         name: 'drying',
-        attributeGroupId: 4
+        groupId: 4
     },
     {
         name: 'ironing',
-        attributeGroupId: 4
+        groupId: 4
     },
     {
         name: 'bleaching',
-        attributeGroupId: 4
+        groupId: 4
     }
 ]
 

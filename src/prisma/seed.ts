@@ -20,13 +20,14 @@ import { ColorName } from './seed.types'
 function createProductVariantSeed(
     productId: number,
     colorNames: ColorName[],
-    stock: number = 5
+    stock?: number
 ): Prisma.ProductVariantCreateManyInput[] {
     const productVariants: Prisma.ProductVariantCreateManyInput[] = []
 
     for (let i = 0; i < sizes.length; i++) {
         const sizeId = i + 1
         for (const colorName of colorNames) {
+            const randomStock = stock ?? Math.floor(Math.random() * 5)
             const color = colorMap[colorName]
 
             productVariants.push({
@@ -34,7 +35,7 @@ function createProductVariantSeed(
                 sizeId,
                 colorName: color.colorName,
                 colorHex: color.colorHex,
-                stock
+                stock: randomStock
             })
         }
     }
