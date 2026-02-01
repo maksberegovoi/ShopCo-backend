@@ -1,7 +1,7 @@
 import prisma from '../../../../prisma'
 import { mapProductReviewDto } from './mapper/product-review.mapper'
 
-export async function getReviewsQuery(productId: number) {
+export async function getProductReviews(productId: number) {
     const reviews = await prisma.review.findMany({
         where: {
             productId

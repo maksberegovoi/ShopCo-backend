@@ -8,7 +8,10 @@ const errorHandlerMiddleware: ErrorRequestHandler = (err, req, res, _next) => {
     }
     if (err instanceof ZodError) {
         return res.status(400).json({
-            message: err.issues[0]?.message ?? 'Validation error'
+            message: err.issues.map((issue) => ({
+                path: issue.path.join('.'),
+                message: issue.message
+            }))
         })
     }
 

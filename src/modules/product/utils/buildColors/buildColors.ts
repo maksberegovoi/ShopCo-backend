@@ -1,6 +1,6 @@
-import { ProductListItemDto } from '../../services/get-all-query/dto/product-list-item.dto'
+import { ProductListItemDto } from '../../services/get-all-products/dto/product-list-item.dto'
 
-type TestVariant = {
+type Variant = {
     colorName: string
     colorHex: string
     stock: number
@@ -8,7 +8,7 @@ type TestVariant = {
 
 type ColorDto = ProductListItemDto['colors'][number]
 
-function buildColors(colors: TestVariant[]): ColorDto[] {
+function buildColors(colors: Variant[]): ColorDto[] {
     const map = new Map<string, ColorDto>()
 
     for (const color of colors) {

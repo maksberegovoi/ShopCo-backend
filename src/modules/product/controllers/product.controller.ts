@@ -2,11 +2,12 @@ import { Request, Response } from 'express'
 import ProductService from '../services/product.service'
 import { ApiResponse } from '../../../shared/http/api-response'
 
-import { ProductListItemDto } from '../services/get-all-query/dto/product-list-item.dto'
-import { ProductDetailsDto } from '../services/get-by-id-query/dto/product-details.dto'
-import { ProductReviewDto } from '../services/get-reviews/dto/product-review.dto'
-import { ProductAttributeGroupDto } from '../services/get-attributes-query/dto/product-attribute-group.dto'
-import { productIdSchema } from '../../../shared/http/schemas/id-param.schema'
+import { ProductListItemDto } from '../services/get-all-products/dto/product-list-item.dto'
+import { ProductDetailsDto } from '../services/get-product-by-id/dto/product-details.dto'
+import { ProductReviewDto } from '../services/get-product-reviews/dto/product-review.dto'
+import { ProductAttributeGroupDto } from '../services/get-product-attributes/dto/product-attribute-group.dto'
+import { idParamSchema } from '../../../shared/http/schemas/id-param.schema'
+import { createProductSchema } from '../services/create-product/schemas/create.schema'
 
 class ProductController {
     constructor(private readonly productService: ProductService) {}
@@ -24,7 +25,7 @@ class ProductController {
         req: Request<{ id: string }>,
         res: Response<ApiResponse<ProductDetailsDto>>
     ): Promise<void> => {
-        const { id } = productIdSchema.parse(req.params)
+        const { id } = idParamSchema.parse(req.params)
 
         const product = await this.productService.getById(id)
 
@@ -35,7 +36,7 @@ class ProductController {
         req: Request<{ id: string }>,
         res: Response<ApiResponse<ProductReviewDto[]>>
     ): Promise<void> => {
-        const { id } = productIdSchema.parse(req.params)
+        const { id } = idParamSchema.parse(req.params)
 
         const reviews = await this.productService.getReviews(id)
         res.json({ data: reviews })
@@ -45,18 +46,30 @@ class ProductController {
         req: Request<{ id: string }>,
         res: Response<ApiResponse<ProductAttributeGroupDto[]>>
     ): Promise<void> => {
-        const { id } = productIdSchema.parse(req.params)
+        const { id } = idParamSchema.parse(req.params)
 
         const attributes = await this.productService.getAttributes(id)
         res.json({ data: attributes })
     }
 
-    // create = async (req: Request, res: Response<ApiResponse<{ id: number }>>): Promise<void> => {}
-    //
-    // remove = async (
-    //     req: Request<{ id: string }>,
-    //     res: Response<ApiResponse<null>>
-    // ): Promise<void> => {}
+    create = async (req: Request, res: Response<{ id: number }>): Promise<void> => {
+        console.log(req.body)
+        const product = createProductSchema.parse(req.body)
+        const productId = await this.productService.create(product)
+
+        res.status(201).json(productId)
+    }
+
+    delete = async (
+        req: Request<{ id: string }>,
+        res: Response<ApiResponse<null>>
+    ): Promise<void> => {
+        const { id } = idParamSchema.parse(req.params)
+
+        await this.productService.delete(id)
+
+        res.sendStatus(204)
+    }
 }
 
 export const productController = new ProductController(new ProductService())

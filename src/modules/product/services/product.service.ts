@@ -1,11 +1,14 @@
-import { ProductListItemDto } from './get-all-query/dto/product-list-item.dto'
-import { ProductDetailsDto } from './get-by-id-query/dto/product-details.dto'
-import { ProductReviewDto } from './get-reviews/dto/product-review.dto'
-import { ProductAttributeGroupDto } from './get-attributes-query/dto/product-attribute-group.dto'
-import { getAllQuery } from './get-all-query/get-all.query'
-import { getByIdQuery } from './get-by-id-query/get-by-id.query'
-import { getReviewsQuery } from './get-reviews/get-reviews.query'
-import { getAttributesQuery } from './get-attributes-query/get-attributes.query'
+import { ProductListItemDto } from './get-all-products/dto/product-list-item.dto'
+import { ProductDetailsDto } from './get-product-by-id/dto/product-details.dto'
+import { ProductReviewDto } from './get-product-reviews/dto/product-review.dto'
+import { ProductAttributeGroupDto } from './get-product-attributes/dto/product-attribute-group.dto'
+import { getAllProducts } from './get-all-products/get-all-products'
+import { getProductById } from './get-product-by-id/get-product-by-id'
+import { getProductReviews } from './get-product-reviews/get-product-reviews'
+import { getProductAttributes } from './get-product-attributes/get-product-attributes'
+import { deleteProduct } from './delete-product/delete-product'
+import { createProduct } from './create-product/create-product'
+import { CreateProductInput } from './create-product/schemas/create.schema'
 
 class ProductService {
     /*
@@ -15,19 +18,27 @@ class ProductService {
      * */
 
     async getAll(): Promise<ProductListItemDto[]> {
-        return getAllQuery()
+        return getAllProducts()
     }
 
     async getById(id: number): Promise<ProductDetailsDto> {
-        return getByIdQuery(id)
+        return getProductById(id)
     }
 
     async getReviews(id: number): Promise<ProductReviewDto[]> {
-        return getReviewsQuery(id)
+        return getProductReviews(id)
     }
 
     async getAttributes(id: number): Promise<ProductAttributeGroupDto[]> {
-        return getAttributesQuery(id)
+        return getProductAttributes(id)
+    }
+
+    async delete(id: number) {
+        return deleteProduct(id)
+    }
+
+    async create(data: CreateProductInput): Promise<{ id: number }> {
+        return createProduct(data)
     }
 }
 

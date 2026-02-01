@@ -9,6 +9,6 @@ productRouter.get('/:id/reviews', productController.getReviews)
 productRouter.get('/:id/attributes', productController.getAttributes)
 
 productRouter.post('/', productController.create) // checkRoleMiddleware('ADMIN')
-productRouter.delete('/', productController.remove) // checkRoleMiddleware('ADMIN')
+productRouter.delete('/:id', productController.delete) // checkRoleMiddleware('ADMIN')
 
 export default productRouter

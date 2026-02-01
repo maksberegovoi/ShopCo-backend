@@ -3,7 +3,7 @@ import prisma from '../../../../prisma'
 import { calculatePrice, getRatingMap } from '../../helpers'
 import { mapProductDetailsDto } from './mapper/product-details.mapper'
 
-export async function getByIdQuery(id: number) {
+export async function getProductById(id: number) {
     const product = await prisma.product.findUnique({
         where: { id },
         select: {

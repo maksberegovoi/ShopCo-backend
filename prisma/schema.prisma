@@ -35,7 +35,7 @@ model User {
 
 model Product {
     id          Int    @id @default(autoincrement())
-    name        String
+    name        String @unique
     basePrice   Int
     discount    Int    @default(0)
     description String
@@ -63,7 +63,7 @@ model ProductImage {
     url    String
     isMain Boolean @default(false)
 
-    product   Product @relation(fields: [productId], references: [id])
+    product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
     productId Int
 
     createdAt DateTime @default(now())
@@ -131,7 +131,7 @@ model ProductVariant {
     colorName String
     colorHex  String
 
-    product   Product @relation(fields: [productId], references: [id])
+    product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
     productId Int
     size      Size    @relation(fields: [sizeId], references: [id])
     sizeId    Int
@@ -159,7 +159,7 @@ model Category {
 model ProductCategory {
     category   Category @relation(fields: [categoryId], references: [id])
     categoryId Int
-    product    Product  @relation(fields: [productId], references: [id])
+    product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
     productId  Int
 
     @@id([productId, categoryId])
@@ -190,7 +190,7 @@ model AttributeGroup {
 model ProductAttributeValue {
     value String
 
-    product     Product   @relation(fields: [productId], references: [id])
+    product     Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
     productId   Int
     attribute   Attribute @relation(fields: [attributeId], references: [id])
     attributeId Int
@@ -205,7 +205,7 @@ model Review {
 
     user      User    @relation(fields: [userId], references: [id])
     userId    Int
-    product   Product @relation(fields: [productId], references: [id])
+    product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
     productId Int
 
     createdAt DateTime @default(now())

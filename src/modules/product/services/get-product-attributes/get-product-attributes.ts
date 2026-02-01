@@ -1,7 +1,7 @@
 import prisma from '../../../../prisma'
 import { ProductAttributeGroupMapper } from './mapper/product-attribute-group.mapper'
 
-export async function getAttributesQuery(productId: number) {
+export async function getProductAttributes(productId: number) {
     const attributes = await prisma.attributeGroup.findMany({
         where: {
             attributes: {

@@ -2,7 +2,7 @@ import prisma from '../../../../prisma'
 import { mapProductListItemDto } from './mapper/product-list-item.mapper'
 import { calculatePrice, getRatingMap } from '../../helpers'
 
-export async function getAllQuery() {
+export async function getAllProducts() {
     const productList = await prisma.product.findMany({
         select: {
             id: true,
