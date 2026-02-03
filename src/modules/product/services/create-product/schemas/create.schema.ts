@@ -34,9 +34,13 @@ export const createProductSchema = z.object({
                 isMain: z.boolean().optional()
             })
         )
-        .refine((images) => images.filter((img) => img.isMain === true).length === 1, {
-            message: 'Only one image can be main image'
-        })
+        .refine(
+            (images) =>
+                images.filter((img) => img.isMain === true).length === 1,
+            {
+                message: 'Only one image can be main image'
+            }
+        )
 })
 
 export type CreateProductInput = z.infer<typeof createProductSchema>

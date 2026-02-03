@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client'
 
-export type PrismaProductListItemPayload = Prisma.ProductGetPayload<{
+export type PrismaProductCardPayload = Prisma.ProductGetPayload<{
     select: {
         id: true
         name: true
@@ -20,4 +20,4 @@ export type PrismaProductListItemPayload = Prisma.ProductGetPayload<{
             }
         }
     }
-}>
+}> & { price: number; rating: number }

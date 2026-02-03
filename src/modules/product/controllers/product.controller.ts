@@ -2,19 +2,19 @@ import { Request, Response } from 'express'
 import ProductService from '../services/product.service'
 import { ApiResponse } from '../../../shared/http/api-response'
 
-import { ProductListItemDto } from '../services/get-all-products/dto/product-list-item.dto'
 import { ProductDetailsDto } from '../services/get-product-by-id/dto/product-details.dto'
 import { ProductReviewDto } from '../services/get-product-reviews/dto/product-review.dto'
 import { ProductAttributeGroupDto } from '../services/get-product-attributes/dto/product-attribute-group.dto'
-import { idParamSchema } from '../../../shared/http/schemas/id-param.schema'
 import { createProductSchema } from '../services/create-product/schemas/create.schema'
+import { ProductCardDto } from '../services/get-all-products/dto/product-card.dto'
+import { idParamSchema } from '../../../shared/http/schemas/params.schema'
 
 class ProductController {
     constructor(private readonly productService: ProductService) {}
 
     getAll = async (
         req: Request,
-        res: Response<ApiResponse<ProductListItemDto[]>>
+        res: Response<ApiResponse<ProductCardDto[]>>
     ): Promise<void> => {
         const products = await this.productService.getAll()
 
@@ -52,7 +52,10 @@ class ProductController {
         res.json({ data: attributes })
     }
 
-    create = async (req: Request, res: Response<{ id: number }>): Promise<void> => {
+    create = async (
+        req: Request,
+        res: Response<{ id: number }>
+    ): Promise<void> => {
         console.log(req.body)
         const product = createProductSchema.parse(req.body)
         const productId = await this.productService.create(product)

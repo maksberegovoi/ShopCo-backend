@@ -1,4 +1,4 @@
-import { ProductListItemDto } from '../../services/get-all-products/dto/product-list-item.dto'
+import { ProductCardDto } from '../../services/get-all-products/dto/product-card.dto'
 
 type Variant = {
     colorName: string
@@ -6,7 +6,7 @@ type Variant = {
     stock: number
 }
 
-type ColorDto = ProductListItemDto['colors'][number]
+type ColorDto = ProductCardDto['colors'][number]
 
 function buildColors(colors: Variant[]): ColorDto[] {
     const map = new Map<string, ColorDto>()

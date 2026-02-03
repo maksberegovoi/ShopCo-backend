@@ -2,13 +2,16 @@ import { CreateProductInput } from './schemas/create.schema'
 import prisma from '../../../../prisma'
 import ApiError from '../../../../shared/http/errors/api-error'
 
-export async function createProduct(data: CreateProductInput): Promise<{ id: number }> {
+export async function createProduct(
+    data: CreateProductInput
+): Promise<{ id: number }> {
     const isExisting = await prisma.product.findUnique({
         // TODO: slug
         where: { name: data.name.trim() }
     })
 
-    if (isExisting) throw ApiError.badRequest(`Product ${data.name} have already exist`)
+    if (isExisting)
+        throw ApiError.badRequest(`Product ${data.name} have already exist`)
 
     const product = await prisma.product.create({
         data: {

@@ -1,4 +1,3 @@
-import { ProductListItemDto } from './get-all-products/dto/product-list-item.dto'
 import { ProductDetailsDto } from './get-product-by-id/dto/product-details.dto'
 import { ProductReviewDto } from './get-product-reviews/dto/product-review.dto'
 import { ProductAttributeGroupDto } from './get-product-attributes/dto/product-attribute-group.dto'
@@ -9,6 +8,7 @@ import { getProductAttributes } from './get-product-attributes/get-product-attri
 import { deleteProduct } from './delete-product/delete-product'
 import { createProduct } from './create-product/create-product'
 import { CreateProductInput } from './create-product/schemas/create.schema'
+import { ProductCardDto } from './get-all-products/dto/product-card.dto'
 
 class ProductService {
     /*
@@ -17,7 +17,7 @@ class ProductService {
      *  TODO: change DB requests to 1 transaction
      * */
 
-    async getAll(): Promise<ProductListItemDto[]> {
+    async getAll(): Promise<ProductCardDto[]> {
         return getAllProducts()
     }
 

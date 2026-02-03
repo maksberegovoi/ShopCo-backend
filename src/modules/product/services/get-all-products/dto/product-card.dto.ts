@@ -1,4 +1,4 @@
-export interface ProductListItemDto {
+export interface ProductCardDto {
     id: number
     name: string
     price: number

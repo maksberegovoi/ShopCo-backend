@@ -1,10 +1,10 @@
-import { ProductListItemDto } from '../dto/product-list-item.dto'
-import { PrismaProductListItemPayload } from '../payload/product-list-item.payload'
 import buildColors from '../../../utils/buildColors/buildColors'
+import { ProductCardDto } from '../dto/product-card.dto'
+import { PrismaProductCardPayload } from '../payload/product-card.payload'
 
-export const mapProductListItemDto = (
-    product: PrismaProductListItemPayload & { price: number; rating: number }
-): ProductListItemDto => ({
+export const mapProductCardDto = (
+    product: PrismaProductCardPayload
+): ProductCardDto => ({
     id: product.id,
     name: product.name,
     price: product.price,

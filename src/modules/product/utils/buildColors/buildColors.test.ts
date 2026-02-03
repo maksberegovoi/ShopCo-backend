@@ -33,12 +33,16 @@ describe('BuildColors', () => {
             { colorName: 'red', colorHex: '#f00', stock: 0 }
         ]
 
-        expect(buildColors(colors)).toEqual([{ name: 'red', hex: '#f00', isAvailable: false }])
+        expect(buildColors(colors)).toEqual([
+            { name: 'red', hex: '#f00', isAvailable: false }
+        ])
     })
 
     it('handles single variant correctly', () => {
         const colors = [{ colorName: 'blue', colorHex: '#00f', stock: 5 }]
 
-        expect(buildColors(colors)).toEqual([{ name: 'blue', hex: '#00f', isAvailable: true }])
+        expect(buildColors(colors)).toEqual([
+            { name: 'blue', hex: '#00f', isAvailable: true }
+        ])
     })
 })

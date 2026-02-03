@@ -92,7 +92,10 @@ export const products = [
         type: { connect: { id: 1 } },
 
         categories: {
-            create: [{ category: { connect: { id: 1 } } }, { category: { connect: { id: 2 } } }]
+            create: [
+                { category: { connect: { id: 1 } } },
+                { category: { connect: { id: 2 } } }
+            ]
         },
 
         images: {
@@ -191,7 +194,10 @@ export const products = [
         type: { connect: { id: 5 } },
 
         categories: {
-            create: [{ category: { connect: { id: 1 } } }, { category: { connect: { id: 2 } } }]
+            create: [
+                { category: { connect: { id: 1 } } },
+                { category: { connect: { id: 2 } } }
+            ]
         },
 
         images: {
@@ -284,6 +290,10 @@ export const products = [
         style: { connect: { id: 1 } },
         brand: { connect: { id: 1 } },
         type: { connect: { id: 1 } },
+
+        categories: {
+            create: [{ category: { connect: { id: 2 } } }]
+        },
 
         images: {
             create: [

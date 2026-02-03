@@ -85,7 +85,9 @@ async function up() {
     for (let i = 0; i < products.length; i++) {
         const productId = i + 1
 
-        for (const [attrName, value] of Object.entries(defaultProductAttributes)) {
+        for (const [attrName, value] of Object.entries(
+            defaultProductAttributes
+        )) {
             pavData.push({
                 productId,
                 attributeId: attributeMap[attrName],

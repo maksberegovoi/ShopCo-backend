@@ -1,9 +1,10 @@
 import prisma from '../../../../prisma'
-import { mapProductListItemDto } from './mapper/product-list-item.mapper'
 import { calculatePrice, getRatingMap } from '../../helpers'
+import { ProductCardDto } from './dto/product-card.dto'
+import { mapProductCardDto } from './mapper/product-card.mapper'
 
-export async function getAllProducts() {
-    const productList = await prisma.product.findMany({
+export async function getAllProducts(): Promise<ProductCardDto[]> {
+    const products = await prisma.product.findMany({
         select: {
             id: true,
             name: true,
@@ -27,8 +28,8 @@ export async function getAllProducts() {
 
     const ratingMap = await getRatingMap(prisma)
 
-    return productList.map((p) =>
-        mapProductListItemDto({
+    return products.map((p) =>
+        mapProductCardDto({
             ...p,
             rating: ratingMap.get(p.id) ?? 0,
             price: calculatePrice(p.basePrice, p.discount)
