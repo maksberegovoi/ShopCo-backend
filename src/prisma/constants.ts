@@ -1,6 +1,8 @@
 import { Gender, Role } from '@prisma/client'
 import { hashSync } from 'bcrypt'
-import { Color, ColorName } from './seed.types'
+
+export type Color = (typeof colors)[number]
+export type ColorName = (typeof colors)[number]['colorName']
 
 export const users = [
     {
