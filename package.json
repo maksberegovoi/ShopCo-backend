@@ -2,9 +2,12 @@
     "name": "shopco-backend",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "dist/app.js",
     "scripts": {
+        "build": "tsc",
+        "start": "node dist/app.js",
         "dev": "tsx watch src/app.ts",
+
         "prisma:migrate": "prisma migrate dev",
         "test": "jest",
         "test:watch": "jest --watch",
@@ -13,7 +16,7 @@
 
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        
+
         "prepare": "husky"
     },
     "prisma": {
