@@ -3,3 +3,4 @@ prisma/migrations
 package.json
 package-lock.json
 README.md
+.github/workflows/**
