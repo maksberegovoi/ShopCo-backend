@@ -5,8 +5,8 @@
     "main": "dist/app.js",
     "scripts": {
         "build": "tsc",
-        "postinstall": "prisma generate && prisma migrate deploy",
-        
+        "migrate:deploy": "prisma migrate deploy",
+
         "start": "node dist/app.js",
         "dev": "tsx watch src/app.ts",
 
