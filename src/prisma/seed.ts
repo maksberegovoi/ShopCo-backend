@@ -6,7 +6,6 @@ import {
     brands,
     categories,
     colorMap,
-    ColorName,
     defaultProductAttributes,
     products,
     reviews,
@@ -16,17 +15,19 @@ import {
     users
 } from './constants'
 import { Prisma } from '@prisma/client'
+import { ColorName } from './seed.types'
 
 function createProductVariantSeed(
     productId: number,
     colorNames: ColorName[],
-    stock: number = 5
+    stock?: number
 ): Prisma.ProductVariantCreateManyInput[] {
     const productVariants: Prisma.ProductVariantCreateManyInput[] = []
 
     for (let i = 0; i < sizes.length; i++) {
         const sizeId = i + 1
         for (const colorName of colorNames) {
+            const randomStock = stock ?? Math.floor(Math.random() * 5)
             const color = colorMap[colorName]
 
             productVariants.push({
@@ -34,7 +35,7 @@ function createProductVariantSeed(
                 sizeId,
                 colorName: color.colorName,
                 colorHex: color.colorHex,
-                stock
+                stock: randomStock
             })
         }
     }
@@ -84,7 +85,9 @@ async function up() {
     for (let i = 0; i < products.length; i++) {
         const productId = i + 1
 
-        for (const [attrName, value] of Object.entries(defaultProductAttributes)) {
+        for (const [attrName, value] of Object.entries(
+            defaultProductAttributes
+        )) {
             pavData.push({
                 productId,
                 attributeId: attributeMap[attrName],
