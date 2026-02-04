@@ -4,8 +4,11 @@ import cors from 'cors'
 import express from 'express'
 import router from './router'
 import errorHandlerMiddleware from './shared/http/middlewares/errorHandlerMiddleware'
+import { httpLoggerMiddleware } from './shared/http/middlewares/httpLoggerMiddleware'
 
 const app = express()
+
+app.use(httpLoggerMiddleware)
 
 app.use(cors())
 app.use(express.json())

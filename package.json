@@ -7,26 +7,21 @@
         "build": "tsc",
         "start": "node dist/app.js",
         "dev": "tsx watch src/app.ts",
-
         "prisma:generate": "prisma generate",
         "prisma:migrate:dev": "prisma migrate dev",
         "prisma:migrate:deploy": "prisma migrate deploy",
         "prisma:seed": "prisma db seed",
-
         "lint": "eslint .",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-
         "test": "jest",
         "test:watch": "jest --watch",
-
         "ci:format": "prettier --check .",
         "ci:lint": "eslint .",
         "ci:typecheck": "tsc --noEmit",
         "ci:prisma:generate": "prisma generate",
         "ci:prisma:migrate": "prisma migrate deploy",
         "ci:test": "jest",
-
         "prepare": "husky"
     },
     "prisma": {
@@ -51,6 +46,8 @@
         "express": "^4.22.1",
         "express-async-errors": "^3.1.1",
         "pg": "^8.17.2",
+        "pino": "^10.3.0",
+        "pino-http": "^11.0.0",
         "prisma": "^6.19.2",
         "zod": "^4.3.6"
     },
@@ -67,6 +64,7 @@
         "husky": "^9.1.7",
         "jest": "^30.2.0",
         "lint-staged": "^16.2.7",
+        "pino-pretty": "^13.1.3",
         "prettier": "^3.8.1",
         "supertest": "^7.2.2",
         "ts-jest": "^29.4.6",
