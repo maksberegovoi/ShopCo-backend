@@ -6,7 +6,8 @@ const envSchema = z.object({
     NODE_ENV: z.enum(['dev', 'production']),
     PORT: z.string().optional(),
     JWT_SECRET: z.string(),
-    JWT_EXPIRES_IN: z.string()
+    JWT_EXPIRES_IN: z.string(),
+    DELIVERY_FEE: z.number().int().positive()
 })
 
 export const env = envSchema.parse(process.env)

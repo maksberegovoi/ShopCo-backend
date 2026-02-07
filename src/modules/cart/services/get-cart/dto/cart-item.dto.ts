@@ -1,6 +1,8 @@
+import { Size } from '@prisma/client'
+
 export interface CartItemDto {
     name: string
-    size: string
+    size: Size
     color: string
     avatar: string
     discount: number

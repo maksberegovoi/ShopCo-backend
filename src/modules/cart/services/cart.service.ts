@@ -1,9 +1,9 @@
-import { getItemsQuery } from './get-items/get-items.query'
-import { CartItemDto } from './get-items/dto/get-items.dto'
+import { GetCartDto } from './get-cart/dto/get-cart.dto'
+import { getCartQuery } from './get-cart/get-cart.query'
 
 class CartService {
-    async getItems(): Promise<CartItemDto[]> {
-        return getItemsQuery()
+    async getCart(userId: number): Promise<GetCartDto> {
+        return getCartQuery(userId)
     }
 }
 

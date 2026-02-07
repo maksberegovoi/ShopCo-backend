@@ -1,16 +1,18 @@
 import { ApiResponse } from '../../../shared/http/api-response'
 import { Request, Response } from 'express'
-import { CartItemDto } from '../services/get-items/dto/get-items.dto'
 import CartService from '../services/cart.service'
+import { GetCartDto } from '../services/get-cart/dto/get-cart.dto'
 
 class CartController {
     constructor(private readonly cartService: CartService) {}
 
-    getItems = async (
+    getCart = async (
         req: Request,
-        res: Response<ApiResponse<CartItemDto[]>>
+        res: Response<ApiResponse<GetCartDto>>
     ): Promise<void> => {
-        const items = await this.cartService.getItems()
+        const userId = req.user!.userId
+
+        const items = await this.cartService.getCart(userId)
 
         res.json({ data: items })
     }

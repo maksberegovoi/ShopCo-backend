@@ -144,6 +144,29 @@ async function up() {
     await prisma.productVariant.createMany({
         data: createProductVariantSeed(9, ['navy', 'white', 'burgundy'])
     })
+
+    // Seed CartItems
+    const variants = await prisma.productVariant.findMany({ take: 6 })
+
+    await prisma.cartItem.createMany({
+        data: [
+            {
+                cartId: 1,
+                productVariantId: variants[0].id,
+                quantity: 2
+            },
+            {
+                cartId: 1,
+                productVariantId: variants[1].id,
+                quantity: 1
+            },
+            {
+                cartId: 2,
+                productVariantId: variants[2].id,
+                quantity: 4
+            }
+        ]
+    })
 }
 
 async function down() {
