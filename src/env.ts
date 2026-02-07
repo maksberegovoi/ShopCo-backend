@@ -1,8 +1,13 @@
 import { z } from 'zod'
 
 const envSchema = z.object({
-    DATABASE_URL: z.string().url(),
-    PORT: z.string().optional()
+    DATABASE_URL: z.url(),
+    CLOUDINARY_URL: z.url(),
+    NODE_ENV: z.enum(['dev', 'production']),
+    PORT: z.string().optional(),
+    JWT_SECRET: z.string(),
+    JWT_EXPIRES_IN: z.string()
 })
 
 export const env = envSchema.parse(process.env)
+export const isDev = env.NODE_ENV === 'dev'

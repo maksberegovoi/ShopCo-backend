@@ -15,6 +15,7 @@ export type PrismaDetailsPayload = Prisma.ProductGetPayload<{
         }
         variants: {
             select: {
+                id: true
                 colorName: true
                 colorHex: true
                 stock: true

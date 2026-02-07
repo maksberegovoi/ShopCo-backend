@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import 'express-async-errors'
+import './env'
 import cors from 'cors'
 import express from 'express'
 import router from './router'

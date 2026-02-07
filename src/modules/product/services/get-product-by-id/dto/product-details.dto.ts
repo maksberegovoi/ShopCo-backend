@@ -11,6 +11,7 @@ export interface ProductDetailsDto {
         isMain: boolean
     }[]
     variants: {
+        id: number
         colorName: string
         colorHex: string
         size: string
