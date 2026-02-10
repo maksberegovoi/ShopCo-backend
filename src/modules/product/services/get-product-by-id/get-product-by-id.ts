@@ -20,6 +20,7 @@ export async function getProductById(id: number) {
             },
             variants: {
                 select: {
+                    id: true,
                     colorName: true,
                     colorHex: true,
                     stock: true,

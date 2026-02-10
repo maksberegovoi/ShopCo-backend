@@ -1,6 +1,6 @@
 import { ApiResponse } from '../../../shared/http/api-response'
 import { Request, Response } from 'express'
-import { CategoryProductsDto } from '../services/get-categories-products-query/dto/category-products.dto'
+import { CategoryProductsDto } from '../services/get-categories-products/dto/category-products.dto'
 import HomeService from '../services/home.service'
 import { limitParamSchema } from '../../../shared/http/schemas/params.schema'
 

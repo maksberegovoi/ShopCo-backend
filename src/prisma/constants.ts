@@ -84,7 +84,7 @@ export const products = [
     {
         name: 'ONE LIFE GRAPHIC T-SHIRT',
         basePrice: 430,
-        discount: 0,
+        discount: 25,
         description:
             'Make a bold statement with this One Life graphic t-shirt. Designed with a modern streetwear vibe and premium cotton comfort for everyday wear.',
         gender: Gender.MALE,

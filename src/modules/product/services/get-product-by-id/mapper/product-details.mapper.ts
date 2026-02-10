@@ -13,6 +13,7 @@ export const mapProductDetailsDto = (
     rating: product.rating,
     gallery: product.images,
     variants: product.variants.map((v) => ({
+        id: v.id,
         colorName: v.colorName,
         colorHex: v.colorHex,
         stock: v.stock,

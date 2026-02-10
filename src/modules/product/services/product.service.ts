@@ -25,10 +25,9 @@ class ProductService {
         return getProductById(id)
     }
 
-    async getReviews(id: number): Promise<ProductReviewDto[]> {
-        return getProductReviews(id)
+    async getReviews(id: number, limit?: number): Promise<ProductReviewDto[]> {
+        return getProductReviews(id, limit)
     }
-
     async getAttributes(id: number): Promise<ProductAttributeGroupDto[]> {
         return getProductAttributes(id)
     }

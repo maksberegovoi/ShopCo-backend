@@ -23,3 +23,5 @@ export const httpLoggerMiddleware = pinoHttp({
         return 'info'
     }
 })
+
+export default logger
