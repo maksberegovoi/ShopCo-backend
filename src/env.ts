@@ -1,8 +1,8 @@
 import { z } from 'zod'
 
 const envSchema = z.object({
-    CLIENT_URL_DEV: z.url(),
-    CLIENT_URL_PROD: z.url(),
+    CLIENT_URLS_DEV: z.string(),
+    CLIENT_URLS_PROD: z.string(),
     DATABASE_URL: z.url(),
     CLOUDINARY_URL: z.url(),
     NODE_ENV: z.enum(['dev', 'production']),
