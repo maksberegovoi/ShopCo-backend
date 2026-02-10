@@ -22,12 +22,17 @@ class UserController {
 
     login = async (
         req: Request,
-        res: Response<ApiResponse<LoginResponseDto>>
+        res: Response<ApiResponse<Omit<LoginResponseDto, 'token'>>>
     ): Promise<void> => {
         const data = loginSchema.parse(req.body)
 
-        const user = await this.userService.login(data)
+        const { token, ...user } = await this.userService.login(data)
 
+        res.cookie('accessToken', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'strict'
+        })
         res.json({ data: user })
     }
 }

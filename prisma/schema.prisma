@@ -127,6 +127,7 @@ model CartItem {
 }
 
 model ProductVariant {
+    // TODO: add variantDiscount, priceModifier
     id        Int    @id @default(autoincrement())
     stock     Int
     colorName String

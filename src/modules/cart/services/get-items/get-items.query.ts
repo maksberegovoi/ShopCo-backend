@@ -1,21 +1,21 @@
 import prisma from '../../../../prisma'
-import { getItemsMapper } from './mapper/get-items.mapper'
+import { cartItemsMapper } from './mapper/cart-items.mapper'
 import { calculatePrice } from '../../../product/helpers'
-import { GetCartDto } from './dto/get-cart.dto'
 import { CartItemDto } from './dto/cart-item.dto'
-import { calculateCartSummary } from '../../utils/calculateCartSummary/calculateCartSummary'
-import { CartSummaryDto } from './dto/cart-summary.dto'
 
-export async function getCartQuery(userId: number): Promise<GetCartDto> {
+export async function getItemsQuery(userId: number): Promise<CartItemDto[]> {
     const items = await prisma.cart.findUnique({
         where: { userId },
         select: {
             cartItems: {
                 select: {
                     quantity: true,
+                    id: true,
                     productVariant: {
                         select: {
+                            id: true,
                             colorName: true,
+                            stock: true,
                             size: {
                                 select: {
                                     name: true
@@ -23,6 +23,7 @@ export async function getCartQuery(userId: number): Promise<GetCartDto> {
                             },
                             product: {
                                 select: {
+                                    id: true,
                                     name: true,
                                     discount: true,
                                     basePrice: true,
@@ -43,31 +44,15 @@ export async function getCartQuery(userId: number): Promise<GetCartDto> {
             }
         }
     })
-    if (!items) {
-        return {
-            items: [],
-            summary: {
-                subTotal: 0,
-                totalDiscount: 0,
-                deliveryFee: 0,
-                total: 0
-            }
-        }
-    }
 
-    const itemsDto: CartItemDto[] = items.cartItems.map((item) => {
+    if (!items) return []
+
+    return items.cartItems.map((item) => {
         const { product } = item.productVariant
 
-        return getItemsMapper({
+        return cartItemsMapper({
             ...item,
             price: calculatePrice(product.basePrice, product.discount)
         })
     })
-
-    const summary: CartSummaryDto = calculateCartSummary(itemsDto)
-
-    return {
-        items: itemsDto,
-        summary: summary
-    }
 }

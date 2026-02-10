@@ -6,13 +6,21 @@ import express from 'express'
 import router from './router'
 import errorHandlerMiddleware from './shared/http/middlewares/errorHandlerMiddleware'
 import { httpLoggerMiddleware } from './shared/http/middlewares/httpLoggerMiddleware'
+import cookieParser from 'cookie-parser'
+import { env, isDev } from './env'
 
 const app = express()
 
 app.use(httpLoggerMiddleware)
 
-app.use(cors())
+app.use(
+    cors({
+        origin: isDev ? env.CLIENT_URL_DEV : env.CLIENT_URL_PROD,
+        credentials: true
+    })
+)
 app.use(express.json())
+app.use(cookieParser())
 app.use('/api', router)
 
 // must be the last one

@@ -18,7 +18,10 @@ export async function createUser(
         data: {
             name: data.name,
             email: data.email,
-            password: hashedPassword
+            password: hashedPassword,
+            cart: {
+                create: {}
+            }
         }
     })
 
