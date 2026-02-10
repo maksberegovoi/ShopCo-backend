@@ -11,6 +11,10 @@ describe('calculateCartSummary', () => {
     it('should calculate summary for single item without discount', () => {
         const items: CartItemDto[] = [
             {
+                productId: 1,
+                cartItemId: 1,
+                productVariantId: 1,
+                stock: 1,
                 name: 'T-Shirt',
                 size: 'M',
                 color: 'Red',
@@ -35,6 +39,10 @@ describe('calculateCartSummary', () => {
     it('should calculate summary for single item with discount', () => {
         const items: CartItemDto[] = [
             {
+                productId: 1,
+                cartItemId: 1,
+                productVariantId: 1,
+                stock: 1,
                 name: 'T-Shirt',
                 size: 'M',
                 color: 'Red',
@@ -59,6 +67,10 @@ describe('calculateCartSummary', () => {
     it('should calculate summary for multiple items with quantity', () => {
         const items: CartItemDto[] = [
             {
+                productId: 1,
+                cartItemId: 1,
+                productVariantId: 1,
+                stock: 1,
                 name: 'T-Shirt',
                 size: 'M',
                 color: 'Red',
@@ -69,6 +81,10 @@ describe('calculateCartSummary', () => {
                 quantity: 2
             },
             {
+                productId: 1,
+                cartItemId: 1,
+                productVariantId: 1,
+                stock: 1,
                 name: 'Jeans',
                 size: 'L',
                 color: 'Blue',
@@ -93,6 +109,10 @@ describe('calculateCartSummary', () => {
     it('should calculate summary matching UI example', () => {
         const items: CartItemDto[] = [
             {
+                productId: 1,
+                cartItemId: 1,
+                productVariantId: 1,
+                stock: 1,
                 name: 'Product 1',
                 size: 'M',
                 color: 'Red',
@@ -103,6 +123,10 @@ describe('calculateCartSummary', () => {
                 quantity: 1
             },
             {
+                productId: 1,
+                cartItemId: 1,
+                productVariantId: 1,
+                stock: 1,
                 name: 'Product 2',
                 size: 'M',
                 color: 'Blue',
@@ -127,6 +151,10 @@ describe('calculateCartSummary', () => {
     it('should handle large quantities correctly', () => {
         const items: CartItemDto[] = [
             {
+                productId: 1,
+                cartItemId: 1,
+                productVariantId: 1,
+                stock: 1,
                 name: 'Cheap Item',
                 size: 'S',
                 color: 'Green',
