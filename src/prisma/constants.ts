@@ -82,15 +82,14 @@ export const styles = [
 
 export const products = [
     {
-        name: 'ONE LIFE GRAPHIC T-SHIRT',
-        basePrice: 430,
-        discount: 25,
+        name: 'BLACK STRIPED T-SHIRT',
+        basePrice: 120,
+        discount: 10,
         description:
-            'Make a bold statement with this One Life graphic t-shirt. Designed with a modern streetwear vibe and premium cotton comfort for everyday wear.',
+            'Classic black cotton t-shirt with subtle horizontal stripes. Slim silhouette suitable for everyday casual wear.',
         gender: Gender.MALE,
-
         style: { connect: { id: 1 } },
-        brand: { connect: { id: 1 } },
+        brand: { connect: { id: 2 } },
         type: { connect: { id: 1 } },
 
         categories: {
@@ -99,11 +98,10 @@ export const products = [
                 { category: { connect: { id: 2 } } }
             ]
         },
-
         images: {
             create: [
                 {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1770845756/black-striped-t-shirt_tzichp.png',
                     isMain: true
                 },
                 {
@@ -111,40 +109,7 @@ export const products = [
                     isMain: false
                 },
                 {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-2_voaejn.jpg',
-                    isMain: false
-                }
-            ]
-        }
-    },
-    {
-        name: 'SKINNY FIT JEANS',
-        basePrice: 230,
-        discount: 0,
-        description:
-            'These skinny fit jeans are designed for a modern, sleek look. Made from premium stretch denim, they provide exceptional comfort and flexibility for all-day wear.',
-        gender: Gender.FEMALE,
-
-        style: { connect: { id: 2 } },
-        brand: { connect: { id: 2 } },
-        type: { connect: { id: 1 } },
-
-        categories: {
-            create: [{ category: { connect: { id: 1 } } }]
-        },
-
-        images: {
-            create: [
-                {
                     url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
-                    isMain: true
-                },
-                {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-3_ysmx3l.png',
-                    isMain: false
-                },
-                {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-2_voaejn.jpg',
                     isMain: false
                 }
             ]
@@ -152,93 +117,21 @@ export const products = [
     },
     {
         name: 'CHECKERED FORMAL SHIRT',
-        basePrice: 155,
-        discount: 80,
+        basePrice: 180,
+        discount: 15,
         description:
-            'Elevate your professional wardrobe with this classic checkered shirt. Perfect for office wear or formal occasions, featuring a sharp collar and premium cotton blend.',
-        gender: Gender.FEMALE,
-
-        style: { connect: { id: 2 } },
-        brand: { connect: { id: 3 } },
-        type: { connect: { id: 4 } },
-
-        categories: {
-            create: [{ category: { connect: { id: 2 } } }]
-        },
-
-        images: {
-            create: [
-                {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
-                    isMain: true
-                },
-                {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-3_ysmx3l.png',
-                    isMain: false
-                },
-                {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-2_voaejn.jpg',
-                    isMain: false
-                }
-            ]
-        }
-    },
-    {
-        name: 'GRADIENT GRAPHIC HOODIE',
-        basePrice: 195,
-        discount: 0,
-        description:
-            'Stay cozy and stylish with this premium gradient hoodie. Features a modern graphic design and ultra-soft fleece lining for ultimate comfort during cooler days.',
+            'Tailored checkered formal shirt crafted from breathable cotton blend. Designed for office and business settings.',
         gender: Gender.MALE,
-
-        style: { connect: { id: 1 } },
+        style: { connect: { id: 4 } },
         brand: { connect: { id: 3 } },
-        type: { connect: { id: 5 } },
-
-        categories: {
-            create: [
-                { category: { connect: { id: 1 } } },
-                { category: { connect: { id: 2 } } }
-            ]
-        },
-
-        images: {
-            create: [
-                {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
-                    isMain: true
-                },
-                {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-3_ysmx3l.png',
-                    isMain: false
-                },
-                {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-2_voaejn.jpg',
-                    isMain: false
-                }
-            ]
-        }
-    },
-    {
-        name: 'ATHLETIC GYM SHORTS',
-        basePrice: 330,
-        discount: 5,
-        description:
-            'Designed for peak performance, these lightweight gym shorts feature moisture-wicking technology and stretchy fabric for unrestricted movement during intense workouts.',
-        gender: Gender.UNISEX,
-
-        style: { connect: { id: 3 } },
-        brand: { connect: { id: 4 } },
-        type: { connect: { id: 3 } },
-
+        type: { connect: { id: 2 } },
         categories: {
             create: [{ category: { connect: { id: 1 } } }]
         },
-
         images: {
             create: [
                 {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1770845769/checkered-formal-shirt_zkq7cz.png',
                     isMain: true
                 },
                 {
@@ -246,28 +139,56 @@ export const products = [
                     isMain: false
                 },
                 {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-2_voaejn.jpg',
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
                     isMain: false
                 }
             ]
         }
     },
     {
-        name: 'FLORAL PARTY DRESS SHIRT',
-        basePrice: 110,
+        name: 'COURAGE GRAPHIC T-SHIRT',
+        basePrice: 95,
+        discount: 20,
+        description:
+            'Street-inspired graphic t-shirt featuring bold “Courage” typography print. Soft jersey fabric for all-day comfort.',
+        gender: Gender.UNISEX,
+        style: { connect: { id: 2 } },
+        brand: { connect: { id: 4 } },
+        type: { connect: { id: 1 } },
+        images: {
+            create: [
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1770845776/courage-graphic-t-shirt_suaqtj.png',
+                    isMain: true
+                },
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-3_ysmx3l.png',
+                    isMain: false
+                },
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
+                    isMain: false
+                }
+            ]
+        }
+    },
+    {
+        name: 'FADED SKINNY JEANS',
+        basePrice: 210,
         discount: 0,
         description:
-            'Make a statement at your next event with this vibrant floral print shirt. Perfect for parties and social gatherings, combining bold style with comfortable wear.',
-        gender: Gender.UNISEX,
-
-        style: { connect: { id: 4 } },
-        brand: { connect: { id: 2 } },
+            'Skinny-fit denim jeans with faded wash effect. Stretch fabric ensures flexibility and sharp silhouette.',
+        gender: Gender.MALE,
+        style: { connect: { id: 1 } },
+        brand: { connect: { id: 3 } },
         type: { connect: { id: 3 } },
-
+        categories: {
+            create: [{ category: { connect: { id: 1 } } }]
+        },
         images: {
             create: [
                 {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1770845765/faded-skinny-jeans_vs4uz2.png',
                     isMain: true
                 },
                 {
@@ -275,32 +196,29 @@ export const products = [
                     isMain: false
                 },
                 {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-2_voaejn.jpg',
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
                     isMain: false
                 }
             ]
         }
     },
     {
-        name: 'CLASSIC WHITE CASUAL TEE',
-        basePrice: 200,
-        discount: 5,
+        name: 'GRADIENT GRAPHIC T-SHIRT',
+        basePrice: 110,
+        discount: 12,
         description:
-            'A wardrobe essential - this classic white t-shirt features a perfect cut and premium cotton fabric. Simple, versatile, and comfortable for everyday wear.',
-        gender: Gender.MALE,
-
-        style: { connect: { id: 1 } },
-        brand: { connect: { id: 1 } },
+            'Modern gradient-print t-shirt with artistic color transition design. Lightweight cotton construction.',
+        gender: Gender.UNISEX,
+        style: { connect: { id: 2 } },
+        brand: { connect: { id: 4 } },
         type: { connect: { id: 1 } },
-
         categories: {
-            create: [{ category: { connect: { id: 2 } } }]
+            create: [{ category: { connect: { id: 1 } } }]
         },
-
         images: {
             create: [
                 {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1770845780/gradient-graphic-t-shirt_lhaby9.png',
                     isMain: true
                 },
                 {
@@ -308,7 +226,7 @@ export const products = [
                     isMain: false
                 },
                 {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-2_voaejn.jpg',
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
                     isMain: false
                 }
             ]
@@ -316,20 +234,21 @@ export const products = [
     },
     {
         name: 'LOOSE FIT BERMUDA SHORTS',
-        basePrice: 110,
-        discount: 15,
+        basePrice: 140,
+        discount: 18,
         description:
-            'Comfortable and casual, these Bermuda shorts are perfect for warm weather. Featuring a relaxed fit and breathable cotton blend for all-day comfort.',
-        gender: Gender.UNISEX,
-
-        style: { connect: { id: 4 } },
+            'Relaxed-fit bermuda shorts made from breathable cotton twill. Ideal for summer casual outfits.',
+        gender: Gender.MALE,
+        style: { connect: { id: 1 } },
         brand: { connect: { id: 2 } },
-        type: { connect: { id: 3 } },
-
+        type: { connect: { id: 4 } },
+        categories: {
+            create: [{ category: { connect: { id: 1 } } }]
+        },
         images: {
             create: [
                 {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1770845810/loose-fit-bermuda-shorts_lheofo.png',
                     isMain: true
                 },
                 {
@@ -337,28 +256,62 @@ export const products = [
                     isMain: false
                 },
                 {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-2_voaejn.jpg',
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
                     isMain: false
                 }
             ]
         }
     },
     {
-        name: 'SPORTS PERFORMANCE HOODIE',
-        basePrice: 230,
-        discount: 25,
+        name: 'ONE LIFE GRAPHIC T-SHIRT',
+        basePrice: 100,
+        discount: 0,
         description:
-            'Engineered for athletes, this performance hoodie combines moisture-wicking technology with thermal insulation. Perfect for pre and post-workout wear.',
-        gender: Gender.FEMALE,
-
-        style: { connect: { id: 3 } },
-        brand: { connect: { id: 5 } },
-        type: { connect: { id: 5 } },
-
+            'Minimalist graphic t-shirt with “One Life” slogan print. Regular fit and soft-touch fabric.',
+        gender: Gender.UNISEX,
+        style: { connect: { id: 2 } },
+        brand: { connect: { id: 4 } },
+        type: { connect: { id: 1 } },
+        categories: {
+            create: [
+                { category: { connect: { id: 1 } } },
+                { category: { connect: { id: 2 } } }
+            ]
+        },
         images: {
             create: [
                 {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1770816561/one-life-graphic-t-shirt_arrnj7.png',
+                    isMain: true
+                },
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1770845886/one-life-graphic-t-shirt-2_wmywfl.png',
+                    isMain: false
+                },
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1770845890/one-life-graphic-t-shirt-3_pcacnu.png',
+                    isMain: false
+                }
+            ]
+        }
+    },
+    {
+        name: 'POLO WITH CONTRAST TRIMS',
+        basePrice: 160,
+        discount: 10,
+        description:
+            'Smart-casual polo shirt featuring contrast collar and sleeve trims. Structured fit for refined look.',
+        gender: Gender.MALE,
+        style: { connect: { id: 3 } },
+        brand: { connect: { id: 3 } },
+        type: { connect: { id: 4 } },
+        categories: {
+            create: [{ category: { connect: { id: 2 } } }]
+        },
+        images: {
+            create: [
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1770845790/polo-with-contrast-trims_sxmuwj.png',
                     isMain: true
                 },
                 {
@@ -366,7 +319,158 @@ export const products = [
                     isMain: false
                 },
                 {
-                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-2_voaejn.jpg',
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
+                    isMain: false
+                }
+            ]
+        }
+    },
+    {
+        name: 'POLO WITH TIPPING DETAILS',
+        basePrice: 170,
+        discount: 0,
+        description:
+            'Cotton polo shirt with tipping details on collar and cuffs. Balanced between casual and semi-formal wear.',
+        gender: Gender.MALE,
+        style: { connect: { id: 3 } },
+        brand: { connect: { id: 1 } },
+        type: { connect: { id: 2 } },
+        categories: {
+            create: [
+                { category: { connect: { id: 2 } } },
+                { category: { connect: { id: 1 } } }
+            ]
+        },
+        images: {
+            create: [
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1770845803/polo-with-tipping-details_pqndpl.png',
+                    isMain: true
+                },
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-3_ysmx3l.png',
+                    isMain: false
+                },
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
+                    isMain: false
+                }
+            ]
+        }
+    },
+    {
+        name: 'SKINNY FIT JEANS',
+        basePrice: 220,
+        discount: 20,
+        description:
+            'Dark-wash skinny fit jeans with reinforced stitching. Designed for a sharp, modern silhouette.',
+        gender: Gender.FEMALE,
+        style: { connect: { id: 1 } },
+        brand: { connect: { id: 2 } },
+        type: { connect: { id: 3 } },
+        categories: {
+            create: [{ category: { connect: { id: 2 } } }]
+        },
+        images: {
+            create: [
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1770845813/skinny-fit-jeans_oy8gz6.png',
+                    isMain: true
+                },
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-3_ysmx3l.png',
+                    isMain: false
+                },
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
+                    isMain: false
+                }
+            ]
+        }
+    },
+    {
+        name: 'SLEEVE STRIPED T-SHIRT',
+        basePrice: 115,
+        discount: 0,
+        description:
+            'Casual t-shirt with striped sleeve accents. Regular fit and breathable cotton fabric.',
+        gender: Gender.MALE,
+        style: { connect: { id: 1 } },
+        brand: { connect: { id: 2 } },
+        type: { connect: { id: 1 } },
+        categories: {
+            create: [
+                { category: { connect: { id: 2 } } },
+                { category: { connect: { id: 1 } } }
+            ]
+        },
+        images: {
+            create: [
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1770845772/sleeve-striped-t-shirt_fpr9zl.png',
+                    isMain: true
+                },
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-3_ysmx3l.png',
+                    isMain: false
+                },
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
+                    isMain: false
+                }
+            ]
+        }
+    },
+    {
+        name: 'T-SHIRT WITH TAPE DETAILS',
+        basePrice: 130,
+        discount: 17,
+        description:
+            'Urban-style t-shirt with contrast tape details along shoulders. Contemporary streetwear aesthetic.',
+        gender: Gender.UNISEX,
+        style: { connect: { id: 2 } },
+        brand: { connect: { id: 4 } },
+        type: { connect: { id: 1 } },
+
+        images: {
+            create: [
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1770845793/t-shirt-with-tape-details_nkevj0.png',
+                    isMain: true
+                },
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-3_ysmx3l.png',
+                    isMain: false
+                },
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
+                    isMain: false
+                }
+            ]
+        }
+    },
+    {
+        name: 'VERTICAL STRIPED SHIRT',
+        basePrice: 190,
+        discount: 12,
+        description:
+            'Vertical striped button-up shirt with tailored cut. Suitable for business-casual environments.',
+        gender: Gender.MALE,
+        style: { connect: { id: 4 } },
+        brand: { connect: { id: 3 } },
+        type: { connect: { id: 2 } },
+        images: {
+            create: [
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1770845807/vertical-striped-shirt_wqur3u.png',
+                    isMain: true
+                },
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-3_ysmx3l.png',
+                    isMain: false
+                },
+                {
+                    url: 'https://res.cloudinary.com/dxmxrfqkx/image/upload/v1769654197/coming-soon-1_arqwdk.png',
                     isMain: false
                 }
             ]

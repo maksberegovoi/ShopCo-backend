@@ -4,6 +4,8 @@ import { CreateUserSchema } from './create-user/schemas/create-user.schema'
 import { loginQuery } from './login-user/login.query'
 import { LoginDto } from './login-user/schemas/login.schema'
 import { LoginResponseDto } from './login-user/dto/login-response.dto'
+import { checkAuthQuery } from './check-auth/check-auth.query'
+import { UserDto } from './check-auth/user.dto'
 
 class UserService {
     async create(data: CreateUserSchema): Promise<CreateUserDto> {
@@ -11,6 +13,10 @@ class UserService {
     }
     async login(data: LoginDto): Promise<LoginResponseDto> {
         return loginQuery(data)
+    }
+
+    async checkAuth(userId: number): Promise<UserDto> {
+        return checkAuthQuery(userId)
     }
 }
 
