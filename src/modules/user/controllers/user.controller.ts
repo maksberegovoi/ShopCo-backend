@@ -5,6 +5,7 @@ import { ApiResponse } from '../../../shared/http/api-response'
 import { CreateUserDto } from '../services/create-user/dto/create-user.dto'
 import { loginSchema } from '../services/login-user/schemas/login.schema'
 import { LoginResponseDto } from '../services/login-user/dto/login-response.dto'
+import { UserDto } from '../services/check-auth/user.dto'
 
 class UserController {
     constructor(private readonly userService: UserService) {}
@@ -31,9 +32,29 @@ class UserController {
         res.cookie('accessToken', token, {
             httpOnly: true,
             secure: true,
-            sameSite: 'strict'
+            sameSite: 'none',
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            path: '/'
         })
         res.json({ data: user })
+    }
+
+    checkAuth = async (req: Request, res: Response<ApiResponse<UserDto>>) => {
+        const userId = req.user!.userId
+
+        const user = await this.userService.checkAuth(userId)
+
+        res.json({ data: user })
+    }
+    logout = async (req: Request, res: Response) => {
+        res.clearCookie('accessToken', {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none',
+            path: '/'
+        })
+
+        res.json({ data: null })
     }
 }
 

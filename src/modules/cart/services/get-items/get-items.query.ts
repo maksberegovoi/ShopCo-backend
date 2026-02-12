@@ -8,6 +8,9 @@ export async function getItemsQuery(userId: number): Promise<CartItemDto[]> {
         where: { userId },
         select: {
             cartItems: {
+                orderBy: {
+                    createdAt: 'asc'
+                },
                 select: {
                     quantity: true,
                     id: true,
