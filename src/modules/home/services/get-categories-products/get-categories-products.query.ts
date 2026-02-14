@@ -1,6 +1,5 @@
 import { CategoryProductsDto } from './dto/category-products.dto'
 import prisma from '../../../../prisma'
-import { calculatePrice, getRatingMap } from '../../../product/helpers'
 import { mapProductCardDto } from '../../../product/services/get-all-products/mapper/product-card.mapper'
 
 export async function getCategoriesProductsQuery(
@@ -10,6 +9,7 @@ export async function getCategoriesProductsQuery(
         select: {
             category: {
                 select: {
+                    id: true,
                     name: true
                 }
             },
@@ -18,7 +18,9 @@ export async function getCategoriesProductsQuery(
                     id: true,
                     name: true,
                     basePrice: true,
+                    price: true,
                     discount: true,
+                    averageRating: true,
                     images: {
                         where: { isMain: true },
                         select: {
@@ -37,8 +39,6 @@ export async function getCategoriesProductsQuery(
         }
     })
 
-    const ratingMap = await getRatingMap(prisma)
-
     const dto: CategoryProductsDto[] = []
     const index: Record<string, number> = {}
 
@@ -50,21 +50,19 @@ export async function getCategoriesProductsQuery(
             index[category.name] = i
 
             dto.push({
+                categoryId: category.id,
                 title: category.name,
                 products: []
             })
         }
 
-        const productCard = mapProductCardDto({
-            ...product,
-            price: calculatePrice(product.basePrice, product.discount),
-            rating: ratingMap.get(product.id) ?? 0
-        })
+        const productCard = mapProductCardDto(product)
         dto[i].products.push(productCard)
     }
 
-    return dto.map(({ title, products }) => ({
+    return dto.map(({ title, categoryId, products }) => ({
         title,
+        categoryId,
         products: products.slice(0, limit)
     }))
 }

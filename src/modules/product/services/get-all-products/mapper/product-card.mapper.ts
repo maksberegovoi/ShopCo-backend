@@ -10,7 +10,7 @@ export const mapProductCardDto = (
     price: product.price,
     basePrice: product.basePrice,
     discount: product.discount,
-    rating: product.rating,
+    rating: product.averageRating,
     avatar: product.images[0]?.url ?? '',
     colors: buildColors(product.variants)
 })

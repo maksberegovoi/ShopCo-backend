@@ -124,7 +124,7 @@ export const products = [
         gender: Gender.MALE,
         style: { connect: { id: 4 } },
         brand: { connect: { id: 3 } },
-        type: { connect: { id: 2 } },
+        type: { connect: { id: 4 } },
         categories: {
             create: [{ category: { connect: { id: 1 } } }]
         },
@@ -181,7 +181,7 @@ export const products = [
         gender: Gender.MALE,
         style: { connect: { id: 1 } },
         brand: { connect: { id: 3 } },
-        type: { connect: { id: 3 } },
+        type: { connect: { id: 2 } },
         categories: {
             create: [{ category: { connect: { id: 1 } } }]
         },
@@ -241,7 +241,7 @@ export const products = [
         gender: Gender.MALE,
         style: { connect: { id: 1 } },
         brand: { connect: { id: 2 } },
-        type: { connect: { id: 4 } },
+        type: { connect: { id: 3 } },
         categories: {
             create: [{ category: { connect: { id: 1 } } }]
         },
@@ -304,7 +304,7 @@ export const products = [
         gender: Gender.MALE,
         style: { connect: { id: 3 } },
         brand: { connect: { id: 3 } },
-        type: { connect: { id: 4 } },
+        type: { connect: { id: 1 } },
         categories: {
             create: [{ category: { connect: { id: 2 } } }]
         },
@@ -334,7 +334,7 @@ export const products = [
         gender: Gender.MALE,
         style: { connect: { id: 3 } },
         brand: { connect: { id: 1 } },
-        type: { connect: { id: 2 } },
+        type: { connect: { id: 1 } },
         categories: {
             create: [
                 { category: { connect: { id: 2 } } },
@@ -367,7 +367,7 @@ export const products = [
         gender: Gender.FEMALE,
         style: { connect: { id: 1 } },
         brand: { connect: { id: 2 } },
-        type: { connect: { id: 3 } },
+        type: { connect: { id: 2 } },
         categories: {
             create: [{ category: { connect: { id: 2 } } }]
         },
@@ -458,7 +458,7 @@ export const products = [
         gender: Gender.MALE,
         style: { connect: { id: 4 } },
         brand: { connect: { id: 3 } },
-        type: { connect: { id: 2 } },
+        type: { connect: { id: 4 } },
         images: {
             create: [
                 {

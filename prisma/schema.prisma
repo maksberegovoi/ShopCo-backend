@@ -39,8 +39,12 @@ model Product {
     name        String @unique
     basePrice   Int
     discount    Int    @default(0)
+    price       Int    @default(dbgenerated()) @db.Integer
     description String
     gender      Gender
+
+    averageRating Float @default(0)
+    reviewsCount  Int   @default(0)
 
     style   Style @relation(fields: [styleId], references: [id])
     styleId Int

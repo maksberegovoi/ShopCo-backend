@@ -6,7 +6,7 @@ export const cartItemsMapper = (item: PrismaCartItemPayload): CartItemDto => ({
     cartItemId: item.id,
     productVariantId: item.productVariant.id,
     name: item.productVariant.product.name,
-    price: item.price,
+    price: item.productVariant.product.price,
     basePrice: item.productVariant.product.basePrice,
     discount: item.productVariant.product.discount,
     quantity: item.quantity,

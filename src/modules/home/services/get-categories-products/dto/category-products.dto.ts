@@ -2,5 +2,6 @@ import { ProductCardDto } from '../../../../product/services/get-all-products/dt
 
 export interface CategoryProductsDto {
     title: string
+    categoryId: number
     products: ProductCardDto[]
 }

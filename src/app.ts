@@ -7,6 +7,7 @@ import errorHandlerMiddleware from './shared/http/middlewares/errorHandlerMiddle
 import { httpLoggerMiddleware } from './shared/http/middlewares/httpLoggerMiddleware'
 import cookieParser from 'cookie-parser'
 import { corsMiddleware } from './shared/http/middlewares/corsMiddleware'
+import rateLimit from 'express-rate-limit'
 
 const app = express()
 
@@ -15,7 +16,15 @@ app.use(httpLoggerMiddleware)
 app.use(corsMiddleware)
 app.use(express.json())
 app.use(cookieParser())
-app.use('/api', router)
+app.use(
+    '/api',
+
+    rateLimit({
+        windowMs: 60 * 1000,
+        max: 100
+    }),
+    router
+)
 
 // must be the last one
 app.use(errorHandlerMiddleware)

@@ -8,17 +8,18 @@ import { getProductAttributes } from './get-product-attributes/get-product-attri
 import { deleteProduct } from './delete-product/delete-product'
 import { createProduct } from './create-product/create-product'
 import { CreateProductInput } from './create-product/schemas/create.schema'
-import { ProductCardDto } from './get-all-products/dto/product-card.dto'
+import { GetAllProductsDto } from './get-all-products/dto/get-all-products.dto'
+import { getFiltersQuery } from './get-filters/get-filters.query'
+import { FiltersDto } from './get-filters/dto/get-filters.dto'
+import { getProductsParamsType } from './get-all-products/schemas/query-filters.schema'
 
 class ProductService {
     /*
-     *  TODO: getById(): change visibility on frontend of available color <=> size
      *  TODO: ratingMap: fix Math.random() to float numbers like 3.5, 4.5
-     *  TODO: change DB requests to 1 transaction
      * */
 
-    async getAll(): Promise<ProductCardDto[]> {
-        return getAllProducts()
+    async getAll(params: getProductsParamsType): Promise<GetAllProductsDto> {
+        return getAllProducts(params)
     }
 
     async getById(id: number): Promise<ProductDetailsDto> {
@@ -38,6 +39,10 @@ class ProductService {
 
     async create(data: CreateProductInput): Promise<{ id: number }> {
         return createProduct(data)
+    }
+
+    async filter(): Promise<FiltersDto> {
+        return getFiltersQuery()
     }
 }
 

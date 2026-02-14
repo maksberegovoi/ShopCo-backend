@@ -113,6 +113,20 @@ async function up() {
                     product: { connect: { id: productId } }
                 }
             })
+
+            const stats = await prisma.review.aggregate({
+                where: { productId },
+                _avg: { rating: true },
+                _count: true
+            })
+
+            await prisma.product.update({
+                where: { id: productId },
+                data: {
+                    averageRating: stats._avg.rating ?? 0,
+                    reviewsCount: stats._count
+                }
+            })
         }
     }
 
@@ -143,6 +157,22 @@ async function up() {
     })
     await prisma.productVariant.createMany({
         data: createProductVariantSeed(9, ['navy', 'white', 'burgundy'])
+    })
+    await prisma.productVariant.createMany({
+        data: createProductVariantSeed(10, ['green', 'black', 'blue'])
+    })
+    await prisma.productVariant.createMany({
+        data: createProductVariantSeed(11, ['purple', 'green', 'brown'])
+    })
+    await prisma.productVariant.createMany({
+        data: createProductVariantSeed(12, ['burgundy', 'orange', 'pink'])
+    })
+    await prisma.productVariant.createMany({
+        data: createProductVariantSeed(13, [
+            'light-blue',
+            'dark-blue',
+            'purple'
+        ])
     })
 
     // Seed CartItems
