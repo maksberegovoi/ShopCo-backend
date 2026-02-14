@@ -5,6 +5,7 @@ import { authMiddleware } from '../../../shared/http/middlewares/authMiddleware'
 const cartRouter = Router()
 
 cartRouter.get('/', authMiddleware, cartController.getCart)
+cartRouter.post('/preview', cartController.getCartPreview)
 cartRouter.post('/items', authMiddleware, cartController.addItem)
 cartRouter.delete('/items/:id', authMiddleware, cartController.deleteItem)
 cartRouter.patch(

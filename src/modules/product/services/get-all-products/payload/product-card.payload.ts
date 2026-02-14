@@ -5,7 +5,9 @@ export type PrismaProductCardPayload = Prisma.ProductGetPayload<{
         id: true
         name: true
         basePrice: true
+        price: true
         discount: true
+        averageRating: true
         images: {
             where: { isMain: true }
             select: {
@@ -20,4 +22,4 @@ export type PrismaProductCardPayload = Prisma.ProductGetPayload<{
             }
         }
     }
-}> & { price: number; rating: number }
+}>

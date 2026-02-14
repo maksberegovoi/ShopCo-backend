@@ -1,22 +1,24 @@
 import { Request, Response } from 'express'
 import ProductService from '../services/product.service'
 import { ApiResponse } from '../../../shared/http/api-response'
-
 import { ProductDetailsDto } from '../services/get-product-by-id/dto/product-details.dto'
 import { ProductReviewDto } from '../services/get-product-reviews/dto/product-review.dto'
 import { ProductAttributeGroupDto } from '../services/get-product-attributes/dto/product-attribute-group.dto'
 import { createProductSchema } from '../services/create-product/schemas/create.schema'
-import { ProductCardDto } from '../services/get-all-products/dto/product-card.dto'
 import { idParamSchema } from '../../../shared/http/schemas/params.schema'
+import { getProductsParamsSchema } from '../services/get-all-products/schemas/query-filters.schema'
+import { GetAllProductsDto } from '../services/get-all-products/dto/get-all-products.dto'
+import { FiltersDto } from '../services/get-filters/dto/get-filters.dto'
 
 class ProductController {
     constructor(private readonly productService: ProductService) {}
 
     getAll = async (
         req: Request,
-        res: Response<ApiResponse<ProductCardDto[]>>
+        res: Response<ApiResponse<GetAllProductsDto>>
     ): Promise<void> => {
-        const products = await this.productService.getAll()
+        const params = getProductsParamsSchema.parse(req.query)
+        const products = await this.productService.getAll(params)
 
         res.json({ data: products })
     }
@@ -72,6 +74,15 @@ class ProductController {
         await this.productService.delete(id)
 
         res.sendStatus(204)
+    }
+
+    getFilters = async (
+        req: Request,
+        res: Response<ApiResponse<FiltersDto>>
+    ): Promise<void> => {
+        const filters = await this.productService.filter()
+
+        res.json({ data: filters })
     }
 }
 

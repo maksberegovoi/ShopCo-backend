@@ -6,6 +6,8 @@ export type PrismaDetailsPayload = Prisma.ProductGetPayload<{
         name: true
         description: true
         basePrice: true
+        price: true
+        averageRating: true
         discount: true
         images: {
             select: {

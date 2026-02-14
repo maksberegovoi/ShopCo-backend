@@ -11,9 +11,10 @@ export type PrismaCartItemPayload = {
             name: string
             discount: number
             basePrice: number
+            price: number
             images: {
                 url: string
             }[]
         }
     }
-} & { price: number }
+}

@@ -1,6 +1,5 @@
 import prisma from '../../../../prisma'
 import { cartItemsMapper } from './mapper/cart-items.mapper'
-import { calculatePrice } from '../../../product/helpers'
 import { CartItemDto } from './dto/cart-item.dto'
 
 export async function getItemsQuery(userId: number): Promise<CartItemDto[]> {
@@ -30,6 +29,7 @@ export async function getItemsQuery(userId: number): Promise<CartItemDto[]> {
                                     name: true,
                                     discount: true,
                                     basePrice: true,
+                                    price: true,
                                     images: {
                                         where: {
                                             isMain: true
@@ -49,13 +49,7 @@ export async function getItemsQuery(userId: number): Promise<CartItemDto[]> {
     })
 
     if (!items) return []
-
-    return items.cartItems.map((item) => {
-        const { product } = item.productVariant
-
-        return cartItemsMapper({
-            ...item,
-            price: calculatePrice(product.basePrice, product.discount)
-        })
-    })
+    const a = items.cartItems.map(cartItemsMapper)
+    console.log(a)
+    return a
 }

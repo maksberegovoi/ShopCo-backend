@@ -2,7 +2,7 @@ import { ProductDetailsDto } from '../dto/product-details.dto'
 import { PrismaDetailsPayload } from '../payload/product-details.payload'
 
 export const mapProductDetailsDto = (
-    product: PrismaDetailsPayload & { price: number; rating: number }
+    product: PrismaDetailsPayload
 ): ProductDetailsDto => ({
     id: product.id,
     name: product.name,
@@ -10,7 +10,7 @@ export const mapProductDetailsDto = (
     price: product.price,
     basePrice: product.basePrice,
     discount: product.discount,
-    rating: product.rating,
+    rating: product.averageRating,
     gallery: product.images,
     variants: product.variants.map((v) => ({
         id: v.id,

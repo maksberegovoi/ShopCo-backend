@@ -1,38 +1,55 @@
 import prisma from '../../../../prisma'
-import { calculatePrice, getRatingMap } from '../../helpers'
-import { ProductCardDto } from './dto/product-card.dto'
 import { mapProductCardDto } from './mapper/product-card.mapper'
+import { GetAllProductsDto } from './dto/get-all-products.dto'
+import { getProductsParamsType } from './schemas/query-filters.schema'
+import { productSortingUtil } from './utils/product-sorting.util'
+import { productOrderingUtil } from './utils/product-ordering.util'
 
-export async function getAllProducts(): Promise<ProductCardDto[]> {
-    const products = await prisma.product.findMany({
-        select: {
-            id: true,
-            name: true,
-            basePrice: true,
-            discount: true,
-            images: {
-                where: { isMain: true },
-                select: {
-                    url: true
-                }
-            },
-            variants: {
-                select: {
-                    colorName: true,
-                    colorHex: true,
-                    stock: true
+export async function getAllProducts(
+    params: getProductsParamsType
+): Promise<GetAllProductsDto> {
+    const page = params?.page ?? 1
+    const limit = params?.limit ?? 9
+    const skip = (page - 1) * limit
+
+    const where = productOrderingUtil(params)
+    const orderBy = productSortingUtil(params)
+
+    const [products, total] = await prisma.$transaction([
+        prisma.product.findMany({
+            where,
+            orderBy,
+            skip,
+            take: limit,
+            select: {
+                id: true,
+                name: true,
+                basePrice: true,
+                discount: true,
+                price: true,
+                averageRating: true,
+                images: {
+                    where: { isMain: true },
+                    select: { url: true }
+                },
+                variants: {
+                    select: {
+                        colorName: true,
+                        colorHex: true,
+                        stock: true
+                    }
                 }
             }
-        }
-    })
+        }),
+        prisma.product.count({ where })
+    ])
 
-    const ratingMap = await getRatingMap(prisma)
+    const items = products.map(mapProductCardDto)
 
-    return products.map((p) =>
-        mapProductCardDto({
-            ...p,
-            rating: ratingMap.get(p.id) ?? 0,
-            price: calculatePrice(p.basePrice, p.discount)
-        })
-    )
+    return {
+        items,
+        limit,
+        page,
+        total
+    }
 }

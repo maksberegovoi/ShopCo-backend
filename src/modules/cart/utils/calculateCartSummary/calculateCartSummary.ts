@@ -1,9 +1,15 @@
-import { CartSummaryDto } from '../../services/get-items/dto/cart-summary.dto'
-import { CartItemDto } from '../../services/get-items/dto/cart-item.dto'
 import { env } from '../../../../env'
 
-export function calculateCartSummary(items: CartItemDto[]): CartSummaryDto {
-    const deliveryFee = env.DELIVERY_FEE
+type SummaryCalculableItem = {
+    basePrice: number
+    price: number
+    quantity: number
+}
+
+export function calculateCartSummary<T extends SummaryCalculableItem>(
+    items: T[]
+) {
+    const deliveryFee = items.length ? env.DELIVERY_FEE : 0
     let totalBasePrice = 0
     let totalPrice = 0
 
